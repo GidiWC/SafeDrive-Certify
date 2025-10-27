@@ -28,14 +28,16 @@ const Home: React.FC = () => {
           fontWeight: 'bold',
           marginBottom: '1rem',
           color: '#fff',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+          textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+          opacity: 0.9
         }}>
           SafeDrive Certify
         </h1>
         <p style={{
           fontSize: '1.2em',
           marginBottom: '2rem',
-          color: '#e0e0e0'
+          color: '#e0e0e0',
+          opacity: 0.8
         }}>
           Promoting safe and professional taxi behavior in Johannesburg
         </p>
