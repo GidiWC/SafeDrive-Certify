@@ -12,7 +12,7 @@ const Home: React.FC = () => {
       justifyContent: 'center',
       alignItems: 'center',
       padding: '2rem',
-      opacity: 0.2
+      opacity: 0.5
     }}>
       <div style={{
         background: 'rgba(255, 255, 255, 0.1)',
