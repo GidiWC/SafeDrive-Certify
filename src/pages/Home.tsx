@@ -6,11 +6,13 @@ const Home: React.FC = () => {
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
       fontFamily: '"Poppins", sans-serif',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: '2rem'
+      padding: '2rem',
+      opacity: 0.2
     }}>
       <div style={{
         background: 'rgba(255, 255, 255, 0.1)',
@@ -27,7 +29,7 @@ const Home: React.FC = () => {
           fontSize: '3em',
           fontWeight: 'bold',
           marginBottom: '1rem',
-          color: '#fff',
+          color: '#ddd',
           textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
           opacity: 0.9
         }}>
@@ -59,7 +61,8 @@ const Home: React.FC = () => {
               fontWeight: '600',
               cursor: 'pointer',
               transition: 'transform 0.2s ease, opacity 0.2s ease',
-              boxShadow: '0 4px 15px rgba(0, 204, 102, 0.3)'
+              boxShadow: '0 4px 15px rgba(0, 204, 102, 0.3)',
+              opacity: 0.3
             }}
             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -79,7 +82,8 @@ const Home: React.FC = () => {
               fontWeight: '600',
               cursor: 'pointer',
               transition: 'transform 0.2s ease, opacity 0.2s ease',
-              boxShadow: '0 4px 15px rgba(255, 107, 107, 0.3)'
+              boxShadow: '0 4px 15px rgba(255, 107, 107, 0.3)',
+              opacity: 0.3
             }}
             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
