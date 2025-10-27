@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../store/slices/authSlice';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
+import QRCode from 'qrcode';
 
 const DriverDashboard: React.FC = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const DriverDashboard: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.auth);
   const { currentDriver } = useSelector((state: RootState) => state.driver);
   const [sessionCode, setSessionCode] = useState<string | null>(null);
+  const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null);
 
   const handleSignOut = async () => {
     try {
@@ -23,10 +25,24 @@ const DriverDashboard: React.FC = () => {
     }
   };
 
-  const handleGenerateQR = () => {
+  const handleGenerateQR = async () => {
     const code = Math.random().toString(36).substring(2, 8).toUpperCase();
     setSessionCode(code);
-    alert(`Session QR Code generated: ${code}\nPassengers can use this code to join your ride.`);
+
+    try {
+      const qrDataUrl = await QRCode.toDataURL(code, {
+        width: 200,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        }
+      });
+      setQrCodeUrl(qrDataUrl);
+    } catch (error) {
+      console.error('Error generating QR code:', error);
+      alert(`Session code generated: ${code}\nQR code generation failed.`);
+    }
   };
 
   const handleViewCertification = () => {
@@ -216,6 +232,41 @@ const DriverDashboard: React.FC = () => {
           >
             Generate Session QR Code
           </button>
+          {qrCodeUrl && (
+            <div style={{
+              marginTop: '2rem',
+              textAlign: 'center',
+              background: 'rgba(255, 255, 255, 0.1)',
+              padding: '1rem',
+              borderRadius: '8px',
+              border: '1px solid rgba(255, 255, 255, 0.2)'
+            }}>
+              <p style={{
+                color: '#e0e0e0',
+                marginBottom: '1rem',
+                fontSize: '1.1em'
+              }}>
+                Session Code: <strong>{sessionCode}</strong>
+              </p>
+              <img
+                src={qrCodeUrl}
+                alt="Session QR Code"
+                style={{
+                  width: '200px',
+                  height: '200px',
+                  borderRadius: '8px',
+                  border: '2px solid rgba(255, 255, 255, 0.3)'
+                }}
+              />
+              <p style={{
+                color: '#b0b0b0',
+                marginTop: '1rem',
+                fontSize: '0.9em'
+              }}>
+                Scan this QR code to join the ride session
+              </p>
+            </div>
+          )}
         </div>
         <div style={{
           background: 'rgba(255, 255, 255, 0.1)',
