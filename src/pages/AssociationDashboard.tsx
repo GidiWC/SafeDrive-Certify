@@ -24,11 +24,11 @@ const AssociationDashboard: React.FC = () => {
   };
 
   const handleViewAllOperators = () => {
-    alert('View All Operators functionality not implemented yet.');
+    navigate('/certification');
   };
 
   const handleViewPendingReports = () => {
-    alert('View Pending Reports functionality not implemented yet.');
+    navigate('/report');
   };
 
   return (
